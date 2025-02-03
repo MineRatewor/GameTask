@@ -5,15 +5,16 @@ using Script.Inventory.SOInventory;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Script.Battle
 {
     public class BattleManager : MonoBehaviour
     {
         [SerializeField] private GameController.GameController _gameController;
-        [SerializeField] private EquipmentController _equipmentController;
-        [SerializeField] private InventoryController _inventoryController;
-         [SerializeField] private HealthController _healthController;
+         private EquipmentController _equipmentController;
+         private InventoryController _inventoryController;
+        private HealthController _healthController;
 
         private WeaponSO _currentWeapon;
         private int _damageEnemy;
@@ -22,6 +23,14 @@ namespace Script.Battle
         public int DamageEnemy = 15;
         public WeaponSO InitWeapon;
 
+        [Inject]
+        private void Construct(EquipmentController equipmentController, InventoryController inventoryController,
+            HealthController healthController)
+        {
+            _equipmentController = equipmentController;
+            _inventoryController = inventoryController;
+            _healthController = healthController;
+        }
         private void Start()
         {
             _currentWeapon = InitWeapon;

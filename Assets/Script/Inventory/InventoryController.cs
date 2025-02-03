@@ -5,19 +5,30 @@ using Script.Battle.Equipment;
 using Script.Inventory.InvetoryUI;
 using Script.Inventory.SOInventory;
 using UnityEngine;
+using Zenject;
 
 namespace Script.Inventory
 {
     public class InventoryController : MonoBehaviour
     {
-        [SerializeField] private RandomLoot _randomLoot;
-        [SerializeField] private EquipmentController _equipmentController;
-        [SerializeField] private HealthController _healthController;
         [SerializeField] private InventorySO _inventoryData;
         [SerializeField] private UIInventoryPage _inventoryPage;
 
+        private RandomLoot _randomLoot;
+        private EquipmentController _equipmentController;
+        private HealthController _healthController;
+        
         private int _currentActiveIndexItem = -1;
         public List<InventoryItem> InitItems = new List<InventoryItem>();
+
+        [Inject]
+        private void Construct(HealthController healthController, EquipmentController equipmentController,
+            RandomLoot randomLoot)
+        {
+            _healthController = healthController;
+            _equipmentController = equipmentController;
+            _randomLoot = randomLoot;
+        }
         private void Start()
         {
             PrepareUI();

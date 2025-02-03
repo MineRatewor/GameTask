@@ -1,18 +1,26 @@
 using Script.Inventory;
 using Script.Inventory.SOInventory;
 using UnityEngine;
+using Zenject;
 
 namespace Script.Battle.Equipment
 {
     public class EquipmentController : MonoBehaviour
     {
         [SerializeField] private EquipmentUI _equipmentUI;
-        [SerializeField] private InventoryController _inventoryController;
+         private InventoryController _inventoryController;
         private EquipmentItemSO _headItem;
         private EquipmentItemSO _torsoItem;
 
         public EquipmentItemSO HeadItem => _headItem;
         public EquipmentItemSO TorsoItem => _torsoItem;
+
+        [Inject]
+        private void Consrtuct(InventoryController inventoryController)
+        {
+            _inventoryController = inventoryController;
+        }
+        
         public void Equip(EquipmentItemSO item)
         {
             if (item.EquipmentType == EquipmentType.Head)
