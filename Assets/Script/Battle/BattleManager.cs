@@ -1,5 +1,7 @@
 using System;
 using Script.Battle.Equipment;
+using Script.CustomEventBus;
+using Script.CustomEventBus.Signal;
 using Script.Inventory;
 using Script.Inventory.SOInventory;
 using UnityEngine;
@@ -12,10 +14,11 @@ namespace Script.Battle
     public class BattleManager : MonoBehaviour
     {
         [SerializeField] private GameController.GameController _gameController;
-         private EquipmentController _equipmentController;
-         private InventoryController _inventoryController;
+        private EquipmentController _equipmentController;
+        private InventoryController _inventoryController;
         private HealthController _healthController;
-
+        private EventBus _eventBus;
+        
         private WeaponSO _currentWeapon;
         private int _damageEnemy;
         private bool _attackHead = true;
@@ -25,11 +28,12 @@ namespace Script.Battle
 
         [Inject]
         private void Construct(EquipmentController equipmentController, InventoryController inventoryController,
-            HealthController healthController)
+            HealthController healthController, EventBus eventBus)
         {
             _equipmentController = equipmentController;
             _inventoryController = inventoryController;
             _healthController = healthController;
+            _eventBus = eventBus;
         }
         private void Start()
         {
@@ -47,7 +51,8 @@ namespace Script.Battle
             if (_inventoryController.HasAmountAmmo(_currentWeapon.AmmoType, _currentWeapon.AmmoPerShot))
             {
                 _inventoryController.UseAmountAmmo(_currentWeapon.AmmoType, _currentWeapon.AmmoPerShot);
-                _healthController.TakeDamage(_currentWeapon.Damage); 
+                _healthController.TakeDamage(_currentWeapon.Damage);
+                _eventBus?.Invoke(new DamagePlayerSignal(_currentWeapon.Damage));
 
                 if (_healthController.IsEnemyDead())
                 {
@@ -69,7 +74,7 @@ namespace Script.Battle
         {
             if (_attackHead)
             {
-                _healthController.TakeDamage( _damageEnemy,_equipmentController.GetDefenseHead, true); 
+                _healthController.TakeDamage( _damageEnemy,_equipmentController.GetDefenseHead, true);
             }
             else
             {
