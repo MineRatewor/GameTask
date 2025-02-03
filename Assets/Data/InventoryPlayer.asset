@@ -13,26 +13,26 @@ MonoBehaviour:
   m_Name: InventoryPlayer
   m_EditorClassIdentifier: 
   _inventoryItems:
-  - Quantity: 20
+  - Quantity: 34
     Item: {fileID: 11400000, guid: d8d3b4865094833408226420f744e99a, type: 2}
   - Quantity: 1
-    Item: {fileID: 11400000, guid: cb69ca1c95e7fe54497ccb9e29d783c7, type: 2}
+    Item: {fileID: 11400000, guid: 75a6e1e193deed24f88888132959eeb2, type: 2}
   - Quantity: 1
     Item: {fileID: 11400000, guid: 75a6e1e193deed24f88888132959eeb2, type: 2}
-  - Quantity: 20
+  - Quantity: 97
     Item: {fileID: 11400000, guid: 916ce57ef42775a448cb04b87051aafe, type: 2}
-  - Quantity: 6
+  - Quantity: 1
     Item: {fileID: 11400000, guid: 88a584606390bb44caf111dcc2eab41e, type: 2}
-  - Quantity: 2
+  - Quantity: 5
     Item: {fileID: 11400000, guid: 88a584606390bb44caf111dcc2eab41e, type: 2}
   - Quantity: 1
     Item: {fileID: 11400000, guid: 35a5e8b1509310f4e982ed217c8d80f9, type: 2}
+  - Quantity: 50
+    Item: {fileID: 11400000, guid: d8d3b4865094833408226420f744e99a, type: 2}
   - Quantity: 1
-    Item: {fileID: 11400000, guid: ec422860100ca9142a2c53b5fe9e3fc1, type: 2}
-  - Quantity: 0
-    Item: {fileID: 0}
-  - Quantity: 0
-    Item: {fileID: 0}
+    Item: {fileID: 11400000, guid: 75a6e1e193deed24f88888132959eeb2, type: 2}
+  - Quantity: 76
+    Item: {fileID: 11400000, guid: 916ce57ef42775a448cb04b87051aafe, type: 2}
   - Quantity: 0
     Item: {fileID: 0}
   - Quantity: 0
